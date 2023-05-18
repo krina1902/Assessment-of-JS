@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Booking </title>
+</head>
+<body>
+    <section>
+        <h1>!!!!! Welcome To Our Restaurant !!!!! </h1>
+        <p>Note: Please fill this booking details.</p>
+        <div class="form" >
+            <form onsubmit="return valid()">
+                <label>USERNAME</label>
+                <input type="text" placeholder="please enter username" id="username"><br>
+                <p id="p1"></p>
+                <label>Mobile Number</label>
+                <input type="tel" placeholder="please enter phone number" id="no"><br>
+                <p id="p2"></p>
+                <label>Email</label>
+                <input type="email" placeholder="please enter your email" id="email"><br>
+                <p id="p3"></p>
+                <label>No of person</label>
+                <input type="digit" placeholder="enter total person" id="person"><br>
+                <p id="p4"></p>
+                <label>Date</label>
+                <input type="date" id="date"><br>
+                <p id="p5"></p>
+                <label>Time</label>
+                <input type="time" id="time" ><br>
+                <p id="p6"></p>
+                <label>Slot</label>
+                <input type="checkbox">Breakfast
+                <input type="checkbox">Lunch
+                <input type="checkbox">Dinner <br>
+                <p id="p7"></p>
+                <input type="submit">
+            </form>
+        </div>
+    </section>
+
+    <script>
+        let username = document.getElementById("username")
+        let p1 = document.getElementById("p1")
+        let no = document.getElementById("no")
+        let p2 = document.getElementById("p2")
+        let email = document.getElementById("email")
+        let p3 = document.getElementById("p3")
+        let person = document.getElementById("person")
+        let p4 = document.getElementById("p4")
+        let date = document.getElementById("date")
+        let p5 = document.getElementById("p5")
+        let time = document.getElementById("time")
+        let p6 = document.getElementById("p6")
+        var mobile = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/
+
+        function valid(){
+            if(username.value == ""){
+                p1.innerHTML = "enter username"
+                return false
+            }
+            else{
+                p1.innerHTML = ""
+            }
+            if(no.value == ""){
+                p2.innerHTML = "enter mobile number"
+                return false
+            }
+            else if(no.value != ""){
+                if(no.value.match(mobile)){
+                    p2.innerHTML = "valid phone no"
+                }
+                else{
+                    p2.innerHTML = "invalid mobile no"
+                    return false
+                }
+            }
+            else{
+                p2.innerHTML = ""
+            }
+            return true
+        }
+    </script>
+</body>
+</html>
