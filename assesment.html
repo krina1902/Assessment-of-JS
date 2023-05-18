@@ -31,9 +31,9 @@
                 <input type="time" id="time" ><br>
                 <p id="p6"></p>
                 <label>Slot</label>
-                <input type="checkbox">Breakfast
-                <input type="checkbox">Lunch
-                <input type="checkbox">Dinner <br>
+                <input type="checkbox" id="checkbox">Breakfast
+                <input type="checkbox" id="checkbox">Lunch
+                <input type="checkbox" id="checkbox">Dinner <br>
                 <p id="p7"></p>
                 <input type="submit">
             </form>
@@ -53,7 +53,12 @@
         let p5 = document.getElementById("p5")
         let time = document.getElementById("time")
         let p6 = document.getElementById("p6")
+        let checkbox = document.querySelectorAll("#checkbox")
+        let p7 = document.getElementById("p7")
+        let options=['Breakfast','Lunch','Dinner'];
+        let marked_checkboxes = [];
         var mobile = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/
+        var em = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
         function valid(){
             if(username.value == ""){
@@ -79,6 +84,62 @@
             else{
                 p2.innerHTML = ""
             }
+            if(email.value == ""){
+                p3.innerHTML = "enter email address"
+                return false
+            }
+            else if(email.value != ""){
+            if (email.value.match(em)){
+                p3.innerHTML = "valid email address"
+            }
+            else{
+                p3.innerHTML = "invalid email address"
+                return false
+            }
+           }
+           else{
+            p3.innerHTML = "enter email address"
+            return false
+           }
+           if(person.value == ""){
+            p4.innerHTML = "enter no of person"
+            return false
+           }
+           else if(person.value.match(/^[0-9]+$/)){
+            p4.innerHTML = ""
+           }
+           else{
+            p4.innerHTML = "enter digit"
+            return false
+           }
+           if(date.value == ""){
+                p5.innerHTML = "please select date"
+                return false
+            }
+            else{
+                p5.innerHTML = ""
+            }
+            if(time.value == ""){
+                p6.innerHTML = "please select time"
+                return false
+            }
+            else{
+                p6.innerHTML = ""
+            }
+            checkbox.forEach((check_box,index) => { 
+                if(check_box.checked){
+                    p7.innerHTML += `option ${options[index]} is selected `;
+                    marked_checkboxes.push(check_box);
+                }
+            });
+            if (marked_checkboxes.length>=1){
+                p7.innerHTML+="Thank you for choosing the options";
+            }
+            else{
+                p7.innerHTML += "Must select a minimum of 1 options to proceed";
+                return false
+            }
+        
             return true
         }
     </script>
